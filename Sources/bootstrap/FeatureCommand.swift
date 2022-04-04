@@ -40,7 +40,7 @@ final class FeatureCommand {
     func run() throws {
         let group = MultiThreadedEventLoopGroup(numberOfThreads: System.coreCount)
         let sources = LeafSources()
-        let source = CustomSource(root: "\(Path.current)/Sources/bootstrap/templates/")
+        let source = CustomSource(root: "\(Bundle.module.bundlePath)/templates/")
         try sources.register(using: source)
 
         let renderer = LeafRenderer(
@@ -52,13 +52,13 @@ final class FeatureCommand {
         let view = try bytes(for: "view", renderer: renderer)
         let test = try bytes(for: "test", renderer: renderer)
 
-        let packagePath = Path("\(Path.current)/Packages/Feature")
+        let packagePath = Path("\(Path.current)/Packages/Features")
         let featurePath = packagePath + "Sources/\(name)"
         try? featurePath.mkdir()
 
         let domainPath = featurePath + "\(name)Domain.swift"
         let viewPath = featurePath + "\(name)View.swift"
-        let testPath = packagePath + "Tests/FeatureTests/\(name)Tests.swift"
+        let testPath = packagePath + "Tests/FeaturesTests/\(name)Tests.swift"
 
         try domainPath.write(Data(buffer: domain))
         try viewPath.write(Data(buffer: view))
