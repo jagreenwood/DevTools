@@ -1,0 +1,17 @@
+//
+//  #(name)DomainTests.swift
+//
+//
+//  Created by #(username) on #date(date, "MM-dd-yyyy").
+//
+
+import XCTest
+@testable import #(name)Domain
+
+extension #(name)Domain.Environment {
+    static let failing = Self()
+}
+
+final class #(name)DomainTests: XCTestCase {
+
+}

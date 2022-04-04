@@ -1,0 +1,32 @@
+//
+//  #(name)View.swift
+//
+//
+//  Created by #(username) on #date(date, "MM-dd-yyyy").
+//
+
+import SwiftUI
+
+public struct #(name)View: View {
+    let store: Store<#(name)Domain.State, #(name)Domain.Action>
+
+    var body: some View {
+        WithViewStore(store) { viewStore in
+            Text(viewStore.name)
+                .padding()
+        }
+    }
+}
+
+\#if DEBUG
+struct #(name)View_Previews: PreviewProvider {
+    static var previews: some View {
+        #(name)View(
+            store: Store(
+                initialState: #(name)Domain.State(),
+                reducer: #(name)Domain.reducer,
+                environment: #if(sysenv):.mock(.mock)#else:.mock#endif)
+        )
+    }
+}
+\#endif

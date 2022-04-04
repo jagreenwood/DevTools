@@ -1,0 +1,33 @@
+//
+//  #(name)Domain.swift
+//  
+//
+//  Created by #(username) on #date(date, "MM-dd-yyyy").
+//
+
+import ComposableArchitecture
+import Foundation
+
+public struct #(name)Domain: Equatable {
+    public struct State: Equatable {
+        let name = "#(name)"
+    }
+
+    public enum Action: Equatable {
+    }
+
+    public struct Environment {
+        public static live = Self()
+        public static mock = Self()
+    }
+    #if(combined):
+    public static let reducer = Reducer<State, Action, #if(sysenv):SystemEnvironment<Environment>#else:Environment#endif>.combine(
+        Reducer { _, _, _ in
+                .none
+        }
+    )
+    #else:
+    public static let reducer = Reducer<State, Action, #if(sysenv):SystemEnvironment<Environment>#else:Environment#endif> { _, _, _ in
+        .none
+    }#endif
+}
