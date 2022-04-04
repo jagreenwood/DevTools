@@ -38,6 +38,9 @@ final class FeatureCommand {
     }
 
     func run() throws {
+        print("bundleURL -> \(Bundle.module.bundleURL)")
+        print("resourceURL -> \(Bundle.module.resourceURL)")
+
         let group = MultiThreadedEventLoopGroup(numberOfThreads: System.coreCount)
         let sources = LeafSources()
         let source = CustomSource(root: "\(Path.current)/.build/checkouts/DevTools/Sources/bootstrap/templates/")
