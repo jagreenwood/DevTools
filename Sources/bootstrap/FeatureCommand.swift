@@ -100,12 +100,16 @@ private extension String {
         """
         Add the following to Package.swift:
         Product:
-        .library(name: "\(name)", targets: ["\(name)"]),
+        .library(
+            name: "\(name)",
+            targets: ["\(name)"]),
 
         Target:
         .target(
             name: "\(name)",
             dependencies: [
+                "Common",
+                .product(name: "ComposableArchitecture", package: "swift-composable-architecture")
             ]),
         """
     }

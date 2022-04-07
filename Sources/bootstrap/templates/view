@@ -5,12 +5,13 @@
 //  Created by #(username) on #date(date, "MM-dd-yyyy").
 //
 
+import ComposableArchitecture
 import SwiftUI
 
 public struct #(name)View: View {
     let store: Store<#(name)Domain.State, #(name)Domain.Action>
 
-    var body: some View {
+    public var body: some View {
         WithViewStore(store) { viewStore in
             Text(viewStore.name)
                 .padding()

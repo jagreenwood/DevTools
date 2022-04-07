@@ -17,8 +17,8 @@ public struct #(name)Domain: Equatable {
     }
 
     public struct Environment {
-        public static live = Self()
-        public static mock = Self()
+        public static var live = Self()
+        public static var mock = Self()
     }
     #if(combined):
     public static let reducer = Reducer<State, Action, #if(sysenv):SystemEnvironment<Environment>#else:Environment#endif>.combine(
