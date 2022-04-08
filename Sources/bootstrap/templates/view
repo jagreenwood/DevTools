@@ -15,6 +15,9 @@ public struct #(name)View: View {
         WithViewStore(store) { viewStore in
             Text(viewStore.name)
                 .padding()
+                .onAppear {
+                    viewStore.send(.onAppear)
+                }
         }
     }
 }

@@ -5,6 +5,8 @@
 //  Created by #(username) on #date(date, "MM-dd-yyyy").
 //
 
+import Overture
+import ComposablePurchaseManager
 import XCTest
 @testable import #(name)
 
@@ -13,5 +15,14 @@ extension #(name)Domain.Environment {
 }
 
 final class #(name)DomainTests: XCTestCase {
+    func testName() throws {
+        let store = TestStore(
+            initialState: ProgressNotificationsDomain.State(),
+            reducer: ProgressNotificationsDomain.reducer,
+            environment: #if(sysenv):.mock(.failing)#else:.failing#endif)
 
+        store.send(.onAppear) {
+            $0.name = "#(name)"
+        }
+    }
 }
