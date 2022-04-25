@@ -2,7 +2,7 @@
 //  #(name)View.swift
 //
 //
-//  Created by #(username) on #date(date, "MM-dd-yyyy").
+//  Created by #(username) on #date(date, "MM/dd/yyyy").
 //
 
 import ComposableArchitecture

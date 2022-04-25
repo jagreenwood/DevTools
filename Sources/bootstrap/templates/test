@@ -2,7 +2,7 @@
 //  #(name)DomainTests.swift
 //
 //
-//  Created by #(username) on #date(date, "MM-dd-yyyy").
+//  Created by #(username) on #date(date, "MM/dd/yyyy").
 //
 
 import Overture
@@ -17,8 +17,8 @@ extension #(name)Domain.Environment {
 final class #(name)DomainTests: XCTestCase {
     func testName() throws {
         let store = TestStore(
-            initialState: ProgressNotificationsDomain.State(),
-            reducer: ProgressNotificationsDomain.reducer,
+            initialState: #(name)Domain.State(),
+            reducer: #(name)sDomain.reducer,
             environment: #if(sysenv):.mock(.failing)#else:.failing#endif)
 
         store.send(.onAppear) {
