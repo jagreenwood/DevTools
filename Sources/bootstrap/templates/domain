@@ -1,16 +1,21 @@
 //
 //  #(name)Domain.swift
-//  
+//
 //
 //  Created by #(username) on #date(date, "MM/dd/yyyy").
 //
 
+import Common
 import ComposableArchitecture
 import Foundation
 
 public struct #(name)Domain: Equatable {
     public struct State: Equatable {
-        let name = ""
+        public var name: String
+
+        public init(name: String = "") {
+            self.name = name
+        }
     }
 
     public enum Action: Equatable {
@@ -21,22 +26,21 @@ public struct #(name)Domain: Equatable {
         public static var live = Self()
         public static var mock = Self()
     }
-    #if(combined):
+#if(combined):
     public static let reducer = Reducer<State, Action, #if(sysenv):SystemEnvironment<Environment>#else:Environment#endif>.combine(
-        Reducer { state, action, environment in
+        Reducer { state, action, _ in
             switch action {
-                case .onAppear:
-                    state.name = "#(name)"
-                    return .none
-            }
-        }
-    )
-    #else:
-    public static let reducer = Reducer<State, Action, #if(sysenv):SystemEnvironment<Environment>#else:Environment#endif> { state, action, environment in
-        switch action {
             case .onAppear:
                 state.name = "#(name)"
                 return .none
+            }
+        }
+    )#else:
+    public static let reducer = Reducer<State, Action, #if(sysenv):SystemEnvironment<Environment>#else:Environment#endif> { state, action, _ in
+        switch action {
+        case .onAppear:
+            state.name = "#(name)"
+            return .none
         }
     }#endif
 }

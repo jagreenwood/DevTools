@@ -5,8 +5,8 @@
 //  Created by #(username) on #date(date, "MM/dd/yyyy").
 //
 
+import ComposableArchitecture
 import Overture
-import ComposablePurchaseManager
 import XCTest
 @testable import #(name)
 
@@ -18,7 +18,7 @@ final class #(name)DomainTests: XCTestCase {
     func testName() throws {
         let store = TestStore(
             initialState: #(name)Domain.State(),
-            reducer: #(name)sDomain.reducer,
+            reducer: #(name)Domain.reducer,
             environment: #if(sysenv):.mock(.failing)#else:.failing#endif)
 
         store.send(.onAppear) {
